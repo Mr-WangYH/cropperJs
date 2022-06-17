@@ -1,0 +1,16 @@
+.imgBox {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #eee;
+  display: inline-flex;
+  align-items: center;
+}
+.imgBox .image {
+  width: 100%;
+}
+.CropImg {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
