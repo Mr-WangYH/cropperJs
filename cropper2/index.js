@@ -4,8 +4,9 @@
  * @Author: 阿鸿
  * @Date: 2022-06-16 07:27:19
  * @LastEditors: 阿鸿
- * @LastEditTime: 2022-06-17 09:35:45
+ * @LastEditTime: 2022-06-22 08:07:45
  */
+
 // 1.1 获取裁剪区域的 DOM 元素
 var image = document.querySelector('#image');
 var btnChooseImage = document.querySelector('#btnChooseImage');
