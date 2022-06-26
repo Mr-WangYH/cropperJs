@@ -4,7 +4,7 @@
  * @Author: 阿鸿
  * @Date: 2022-06-14 11:08:21
  * @LastEditors: 阿鸿
- * @LastEditTime: 2022-06-16 07:14:59
+ * @LastEditTime: 2022-06-26 21:48:50
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -13,45 +13,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../node_modules/cropperjs/dist/cropper.css" />
+    <link rel="stylesheet" href="../node_modules/cropper/dist/cropper.css">
     <link rel="stylesheet" href="./index.css" />
   </head>
 
   <body>
-    <div class="imgBox">
-      <img class="image" src="https://img2.woyaogexing.com/2022/06/13/4740fed72be96b8c!400x400.jpg" />
+    <br>
+      <div class="head">更换头像</div>
+      <div class="card-body">
+        <!-- 第一行的图片裁剪和预览区域 -->
+        <div class="row1">
+          <!-- 图片裁剪区域 -->
+          <div class="cropper-box">
+            <!-- 这个 img 标签很重要，将来会把它初始化为裁剪区域 -->
+            <img id="image" src="https://img2.woyaogexing.com/2022/06/13/4740fed72be96b8c!400x400.jpg" />
+          </div>
+          <!-- 图片的预览区域 -->
+          <div class="preview-box">
+            <div>
+              <!-- 宽高为 100px 的预览区域 -->
+              <div class="img-preview w100"></div>
+              <p class="size">100 x 100</p>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- 第二行的按钮区域 -->
+        <div class="row2">
+          <input type="file" id="file" accept="image/png,image/jpeg" style="display: none" />
+          <button type="button" id="btnChooseImage">上传</button>
+          <button type="button" id="btnUpload">确定</button>
+        </div>
+      </div>
     </div>
-    <div class="CropImg"></div>
   </body>
-  <script src="../node_modules/cropperjs/dist/cropper.js"></script>
-  <script>
-    var image = document.getElementsByClassName('image')[0];
-    var CropImg = document.getElementsByClassName('CropImg')[0];
-
-    const cropper = new Cropper(image, {
-      viewMode: 1, //定义裁剪器的视图模式。如果将viewMode设置为0，则裁剪框可以延伸到画布外部，而值为1、2或3将限制裁剪框的大小为画布的大小。viewMode为2或3会将画布限制为容器。请注意，如果画布和容器的比例相同，则2和3之间没有差别。
-      dragMode: 'move', //定义的拖动模式裁剪器.canvas和容器一样，2和3没有区别。move:移动画布 crop:创建新的裁剪框（默认） none:什么也不做
-      aspectRatio: 1, //定义裁剪框的固定纵横比。默认情况下，裁剪框为自由比率。
-      autoCropArea: 0.5, //定义0到1之间的fA编号。定义自动裁剪区域大小（百分比）。默认0.8
-      cropBoxMovable: true, //允许通过拖动移动裁剪框。默认true
-      cropBoxResizable: true, //以通过拖动来调整裁剪框的大小 默认true
-      background: true, //显示容器的网格背景
-      movable: false, //移动图像
-      zoomable: true, //是否允许放大图片
-      preview: '.CropImg', //截取的图片显示在哪个容器
-    });
-
-    // const res = cropper
-    //   .getCroppedCanvas({
-    //     imageSmoothingQuality: 'high',
-    //   })
-    //   .toDataURL('image/jpeg');
-    // console.log(res);
-    // cropper.getCroppedCanvas().toBlob((blob) => {
-    //   console.log(blob);
-    // });
-    console.log(cropper.getData());
-
-    // CropImg.style.background = 'url(https://img2.woyaogexing.com/2022/06/13/4740fed72be96b8c!400x400.jpg) no-repeat';
-  </script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../node_modules/cropper/dist/cropper.js"></script>
+  <script src="./index.js"></script>
 </html>
