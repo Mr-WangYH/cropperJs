@@ -33,13 +33,6 @@ body {
   height: 100px;
   background-color: gray;
 }
-/* 设置第二个预览区域的样式 */
-.w50 {
-  width: 50px;
-  height: 50px;
-  background-color: gray;
-  margin-top: 50px;
-}
 /* 设置预览区域下方文本的样式 */
 .size {
   font-size: 12px;
