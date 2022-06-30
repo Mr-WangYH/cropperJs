@@ -86,6 +86,113 @@ import Cropper from 'react-cropper'; // 引入Cropper
 import 'cropperjs/dist/cropper.css'; // 引入Cropper对应的css
 ```
 
+```
+import { useRef, useState, useEffect, useCallback } from 'react';
+import Cropper from 'react-cropper'; // 引入Cropper
+import 'cropperjs/dist/cropper.css'; // 引入Cropper对应的css
+import './App.css';
+
+function App() {
+  const [hooksModalVisible, setHooksModalVisible] = useState(false); // 裁剪图片
+  const [hooksModalFile, setHooksModalFile] = useState(null); // 选取的img文件
+  const [hooksResultImgUrl, setHooksResultImgUrl] = useState(null); // 裁剪后的img
+
+  const handleHooksFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      //选中的文件
+      setHooksModalFile(file);
+      // 显示裁剪
+      setHooksModalVisible(true);
+    }
+  };
+
+  return (
+    <div>
+      <h1>图片裁剪组件</h1>
+      <div>
+        <label>
+          <input type='file' accept='image/jpeg,image/jpg,image/png' onChange={handleHooksFileChange} />
+        </label>
+
+        {/* 最终裁剪好的图片 */}
+        <div className='choosedImg'>{hooksResultImgUrl && <img className='img' src={hooksResultImgUrl} alt='classResultImgUrl' />}</div>
+      </div>
+
+      {/* 裁剪框 */}
+      {hooksModalVisible && (
+        <HooksCropperModal
+          uploadedImageFile={hooksModalFile}
+          onClose={() => {
+            setHooksModalVisible(false);
+          }}
+          onSubmit={setHooksResultImgUrl}
+        />
+      )}
+    </div>
+  );
+}
+{
+  /* 裁剪框组件 */
+}
+function HooksCropperModal({ uploadedImageFile, onClose, onSubmit }) {
+  const [src, setSrc] = useState(null); // 被选中的待裁剪文件的src
+  const cropperRef = useRef(null); // 标记Cropper，会用到自带的方法将裁剪好的img的url进行转义
+
+  useEffect(() => {
+    const fileReader = new FileReader(); // 拿到文件
+    fileReader.onload = (e) => {
+      const dataURL = e.target.result;
+      setSrc(dataURL);
+    };
+
+    fileReader.readAsDataURL(uploadedImageFile);
+  }, [uploadedImageFile]);
+
+  const handleSubmit = useCallback(() => {
+    console.log('正在上传图片');
+    // TODO: 这里可以尝试修改上传图片的尺寸
+    const dataUrl = cropperRef.current.cropper.getCroppedCanvas().toDataURL();
+    console.log(dataUrl);
+    onSubmit(dataUrl);
+
+    // 关闭弹窗
+    onClose();
+    // }
+  }, [onClose, onSubmit]);
+
+  return (
+    <div style={{ width: '60%' }}>
+      <Cropper
+        src={src}
+        ref={cropperRef}
+        viewMode={1}
+        rotatable={true} // 滚轮滑动缩放图片大小
+        zoomable={true}
+        aspectRatio={1} // 固定为1:1  可以自己设置比例, 默认情况为自由比例
+        guides={false}
+        autoCropArea={0.5}
+        background={true}
+      />
+      <div className='rotate-and-save-button-container'>
+        <button
+          onClick={() => {
+            cropperRef.current.cropper.rotate(-90); // 逆时针旋转
+          }}
+        >
+          旋转
+        </button>
+        <button onClick={handleSubmit}>确定</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
 **在微信小程序中进行裁剪**
 [image-cropper](https://github.com/1977474741/image-cropper/tree/master) 一款高性能的小程序图片裁剪插件
 
