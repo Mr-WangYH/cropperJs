@@ -1,0 +1,24 @@
+#demoBox {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  /* overflow: hidden; */
+  border: 1px solid #ccc;
+}
+
+#chooseBox {
+  width: 150px;
+    height: 150px;
+    border: 1px solid #4fb8e3;
+    background: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    cursor: move;
+}
+.canBox {
+  position: absolute;
+  right: 100px;
+  top: 50px;
+}

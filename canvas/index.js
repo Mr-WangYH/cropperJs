@@ -4,7 +4,7 @@
  * @Author: 阿鸿
  * @Date: 2022-06-26 23:38:43
  * @LastEditors: 阿鸿
- * @LastEditTime: 2022-06-26 23:40:37
+ * @LastEditTime: 2022-06-30 07:33:19
  */
 // 图片裁剪
 
@@ -16,13 +16,14 @@ window.onload = function () {
   var ctx = canvas.getContext('2d');
   imgFile.change(function () {
     var file = imgFile[0].files[0];
-    console.log(file);
-    var reader = new FileReader();
+    var reader = new FileReader(); //FileReader接口提供了读取文件的方法和包含读取结果的事件模型
+    console.log(reader);
     reader.onload = function (e) {
+      //onload文件读取成功完成时触发
       console.log(e);
       demoImg.attr('src', e.target.result);
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); //将文件读取为 DataURL
   });
 
   // 位移选裁框

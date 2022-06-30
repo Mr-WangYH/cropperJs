@@ -4,7 +4,7 @@
  * @Author: 阿鸿
  * @Date: 2022-06-16 07:27:19
  * @LastEditors: 阿鸿
- * @LastEditTime: 2022-06-26 21:52:27
+ * @LastEditTime: 2022-06-30 15:31:37
  */
 
 // 1.1 获取裁剪区域的 DOM 元素
@@ -31,9 +31,6 @@ $('#btnChooseImage').click(function () {
 });
 
 $('#file').change(function (e) {
-  if (e.target.files == 0) {
-    return alert('请选择图片');
-  }
   var file = e.target.files[0];
   var newImgURL = URL.createObjectURL(file);
   console.log(newImgURL);
@@ -50,6 +47,14 @@ $('#btnUpload').click(function (e) {
       width: 100,
       height: 100,
     })
+    // {
+    //   width //输出画布的目标宽度
+    //   height //输出画布的目标高度。
+    //   minWidth //输出画布的最小目标宽度，默认值为0。
+    //   minHeight //输出画布的最小目标高度，默认值为0。
+    //   maxWidth //输出画布的最大目标宽度，默认值为Infinity(无穷大)。
+    //   maxHeight //输出画布的最大目标高度，默认值为Infinity(无穷大)。
+    // }
     .toDataURL('image/png'); // 将 Canvas 画布上的内容，转化为 base64 格式的字符串
 
   console.log(dataURL);

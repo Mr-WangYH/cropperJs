@@ -4,7 +4,7 @@
  * @Author: 阿鸿
  * @Date: 2022-06-26 23:38:36
  * @LastEditors: 阿鸿
- * @LastEditTime: 2022-06-26 23:44:18
+ * @LastEditTime: 2022-06-29 09:36:19
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -13,33 +13,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <div>
       <input type="file" id="imgFile" />
     </div>
-    <div id="demoBox" style="width: 300px; height: 300px; position: absolute; left: 300px; top: 0; overflow: hidden; border: 1px solid #ccc">
+    <div id="demoBox">
       <img id="demoImg" alt="" src="https://img2.woyaogexing.com/2022/06/13/4740fed72be96b8c!400x400.jpg" />
-      <div
-        style="
-          width: 150px;
-          height: 150px;
-          border: 1px solid #4fb8e3;
-          background: rgba(255, 255, 255, 0.5);
-          position: absolute;
-          left: 0;
-          top: 0;
-          z-index: 1000;
-          cursor: move;
-        "
-        id="chooseBox"
-      ></div>
+      <div id="chooseBox"></div>
     </div>
-    <div style="position: absolute; left: 700px; top: 0">
+    <div class="canBox">
       <canvas id="myCan" width="150" height="150"></canvas>
       <button id="cut">裁剪文件</button>
-      <button id="btn">后台返回获取裁剪后的文件</button>
-      <img id="returnImg" alt="" />
     </div>
   </body>
   <script src="../node_modules/jquery/dist/jquery.js"></script>
